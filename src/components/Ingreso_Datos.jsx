@@ -1,12 +1,13 @@
 import "./Ingreso_Datos.css";
 import React, { useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
 import {
   FormatCurrency,
   FormatPercentage,
   FormatPeriods,
 } from "./Formato";
 
-function Inputs({ onChange }) {
+function Ingreso({ onChange }) {
   const [prestamo, setprestamo] = useState("");
   const [periodo, setperiodo] = useState("");
   const [interes, setinteres] = useState("");
@@ -38,15 +39,16 @@ function Inputs({ onChange }) {
         </button></div>
       </div>
     </main>
-
+    
     <div class="montos">
-      <h2>Monto del préstamo</h2>
-      <input
+    <h3>Prestamo</h3>
+    <TextField
         id="prestamo"
-        class="calc-options__input"
+        focused
         placeholder="$10,000,000"
-        type="number"
-        min="0"
+        variant="outlined"
+        color="success"
+        margin="none"
         onChange={(e) => setprestamo(e.target.value)}
         InputProps={{
           inputComponent: FormatCurrency,
@@ -55,56 +57,38 @@ function Inputs({ onChange }) {
     </div>
 
     <div class="intereses">
-      <h2>Interes</h2>
-      <div class="interes">
-        <input
-          id="interes"
-          class="calc-options__input"
-          placeholder="1.5%"
-          name="monto"
-          type="number"
-          min="0"
-          max="100"
-          onChange={(e) => setinteres(e.target.value)}
-          InputProps={{
-            inputComponent: FormatPercentage,
-          }}
-        />
-      </div>
+    <h3>Interes</h3>
+    <TextField
+        id="interes"
+        focused
+        placeholder="1.5%"
+        variant="outlined"
+        color="success"
+        margin="none"
+        onChange={(e) => setinteres(e.target.value)}
+        InputProps={{
+          inputComponent: FormatPercentage,
+        }}
+      />
     </div>
 
     <div class="tiempos">
-      <h2>Tiempo</h2>
-      <div class="tiempo">
-        <input
-          id="periodo"
-          class="calc-options__input"
-          placeholder="12"
-          name="tiempo"
-          type="number"
-          min="0"
-          onChange={(e) => setperiodo(e.target.value)}
-          InputProps={{
-            inputComponent: FormatPeriods,
-          }}
-        />
-        <select
-          class="calc-options__select"
-          aria-labelledby="prestamoPeriodLabel"
-        >
-          <option value="Years">Años</option>
-          <option value="Months">Meses</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="boton d-grid gap-2">
-      <button id='btn_calcular' class="btn btn-outline-primary" type="button">
-        Calcular
-      </button>
-    </div>
+    <h3>Periodos</h3>
+    <TextField
+        id="periodo"
+        focused
+        placeholder="12"
+        variant="outlined"
+        color="success"
+        margin="none"
+        onChange={(e) => setperiodo(e.target.value)}
+        InputProps={{
+          inputComponent: FormatPeriods,
+        }}
+      />
+    </div> 
   </div>
   );
 }
 
-export default Inputs;
+export default Ingreso;

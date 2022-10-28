@@ -1,5 +1,5 @@
 import React, { forwardRef } from "react";
-import { default as NumberFormat } from 'react-number-format';
+import NumberFormat  from 'react-number-format';
 
 export const FormatCurrency = forwardRef(function FormatCurrency(
   props,
