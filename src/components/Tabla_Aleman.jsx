@@ -8,24 +8,28 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function Tabla_Aleman({ prestamo, periodo, interes }) {
+function TablaAleman({ prestamo, periodo, interes }) {
+  let amortizacionConstante = "";
+  amortizacionConstante = (prestamo / periodo);
   let pago = "";
   if (prestamo && periodo && interes !== "") {
-    pago = (prestamo / periodo) + (prestamo * (interes / 100));
+    pago = amortizacionConstante + prestamo * (interes / 100);
   }
-  let amortizacionConstante, pagoInteres;
-  amortizacionConstante = (prestamo / periodo);
-  pagoInteres = prestamo * (interes / 100);
+  
   let rows = [{ period: 0, pago: 0, interest: 0, amortiza: 0, saldo: prestamo }];
   if (prestamo && periodo && interes !== "") {
     for (let period = 1; period <= periodo; period++) {
       rows.push({
         period: period,
-        pago: pago,
-        interest: pagoInteres,
+        pago: ((prestamo * (1 + interes / 100) ** (period - 1) -
+        (pago * ((1 + interes / 100) ** (period - 1) - 1)) / (interes / 100)) *
+        interes) /
+        100 + amortizacionConstante,
+        interest: 
+        ((prestamo * (1 + interes / 100) ** (period - 1) - (pago * ((1 + interes / 100) ** (period - 1) - 1)) / (interes / 100)) * interes) /100,
         amortiza: amortizacionConstante,
         saldo:
-        prestamo - amortizacionConstante,
+        (prestamo * (1 + interes / 100) ** period - (pago * ((1 + interes / 100) ** period - 1))/ (interes / 100)),
       });
     }
   }
@@ -66,4 +70,4 @@ function Tabla_Aleman({ prestamo, periodo, interes }) {
   );
 }
 
-export default Tabla_Aleman;
+export default TablaAleman;

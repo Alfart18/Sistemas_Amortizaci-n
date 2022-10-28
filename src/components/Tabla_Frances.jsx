@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function Tabla_Frances({ prestamo, periodo, interes }) {
+function TablaFrances({ prestamo, periodo, interes }) {
   let pago = "";
   if (prestamo && periodo && interes !== "") {
     pago = (prestamo * interes) / 100 / (1 - (1 + interes / 100) ** -periodo);
@@ -74,4 +74,4 @@ function Tabla_Frances({ prestamo, periodo, interes }) {
   );
 }
 
-export default Tabla_Frances;
+export default TablaFrances;

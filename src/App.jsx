@@ -1,8 +1,10 @@
 import "./App.css";
 import Inputs from "./components/Ingreso_Datos";
 import { useState } from "react";
-import AmortizationTabla from "./components/Tabla_Aleman";
+import TablaAleman from "./components/Tabla_Aleman";
+// import TablaFrances from "./components/Tabla_Frances";
 import Box from "@mui/material/Box";
+
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
         />
       </Box>
       <Box class="Tabla" mt={{ xs: 2, sm: 3, md: 4, lg: 5 }}>
-        <AmortizationTabla prestamo={prestamo} periodo={periodo} interes={interes} />
+        <TablaAleman prestamo={prestamo} periodo={periodo} interes={interes} />
       </Box>
     </Box>
   );
